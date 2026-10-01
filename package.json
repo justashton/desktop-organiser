@@ -1,0 +1,18 @@
+{
+  "name": "desktop-organiser",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Claude plugin that organises your Desktop and Downloads using the context Claude already has about your projects and clients.",
+  "license": "MIT",
+  "workspaces": [
+    "mcp-server"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace mcp-server",
+    "test": "npm run test --workspace mcp-server",
+    "typecheck": "npm run typecheck --workspace mcp-server"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

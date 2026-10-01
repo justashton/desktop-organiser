@@ -1,0 +1,13 @@
+{
+  "name": "desktop-organiser",
+  "version": "0.1.0",
+  "description": "Organises your Desktop, Downloads, and Documents using the context Claude already has about your projects and clients. Dry-run by default, every move is journaled and reversible, and nothing is ever deleted.",
+  "author": {
+    "name": "Desktop Organiser contributors"
+  },
+  "homepage": "https://github.com/mayhemhq/desktop-organiser",
+  "repository": "https://github.com/mayhemhq/desktop-organiser",
+  "license": "MIT",
+  "keywords": ["files", "organisation", "productivity", "desktop", "downloads"],
+  "mcpServers": "./.mcp.json"
+}
