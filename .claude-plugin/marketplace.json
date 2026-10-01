@@ -1,0 +1,16 @@
+{
+  "name": "desktop-organiser",
+  "owner": {
+    "name": "Desktop Organiser contributors",
+    "url": "https://github.com/mayhemhq/desktop-organiser"
+  },
+  "description": "Organises your Desktop, Downloads, and Documents using the context Claude already has about your projects and clients.",
+  "plugins": [
+    {
+      "name": "desktop-organiser",
+      "source": "./plugin",
+      "description": "Dry-run by default; every file move is journaled and reversible, and nothing is ever deleted.",
+      "version": "0.1.0"
+    }
+  ]
+}
