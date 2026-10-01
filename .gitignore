@@ -4,3 +4,9 @@ dist/
 .DS_Store
 coverage/
 .organise/
+
+# The bundled MCP server IS the plugin's runtime — it has to be committed so
+# a marketplace install (which copies only plugin/, nothing outside it) has
+# something to run. Rebuild it with `npm run bundle --workspace mcp-server`.
+!plugin/dist/
+!plugin/dist/**

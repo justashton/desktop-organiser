@@ -90,19 +90,21 @@ hints (CSV headers, ~200 characters of PDF text, an EXIF summary), never full
 file contents, and redacts anything that looks like a card number, tax/SSN
 number, or passport number before it's returned.
 
-## Getting started
+## Install
 
-```bash
-git clone https://github.com/mayhemhq/desktop-organiser
-cd desktop-organiser
-npm install
-npm run build
+In a Claude Code terminal session:
+
+```text
+/plugin marketplace add mayhemhq/desktop-organiser
+/plugin install desktop-organiser@desktop-organiser
 ```
 
-Then add the plugin to Claude Code (or Claude Desktop) pointing at
-`plugin/`, following your client's plugin-loading instructions — it reads
-`plugin/.claude-plugin/plugin.json`, which points at the built MCP server in
-`mcp-server/dist/`.
+Then run `/reload-plugins` (or start a new session) and try `/desktop-organiser:organise`.
+
+No separate build step is required: `plugin/dist/index.cjs` is a prebuilt,
+self-contained bundle of the MCP server committed to the repo, specifically
+so a marketplace install — which copies only the `plugin/` directory, not
+`mcp-server/` — has something to run.
 
 To try it against the included sample folder instead of your real Desktop,
 copy `fixtures/example-organise.md` to `~/.desktop-organiser/ORGANISE.md`
@@ -110,14 +112,29 @@ copy `fixtures/example-organise.md` to `~/.desktop-organiser/ORGANISE.md`
 
 ## Developing
 
+Day-to-day work happens in `mcp-server/` (TypeScript source, tests):
+
 ```bash
-npm test         # run the mcp-server test suite (vitest)
+npm install
+npm test              # run the mcp-server test suite (vitest)
 npm run typecheck
-npm run build
+npm run build          # tsc, for local iteration / `npm run dev`
 ```
 
 Tests use throwaway temp directories, never your real filesystem — see
 `mcp-server/test/`.
+
+Before committing a change to `mcp-server/src/`, refresh the bundle the
+plugin actually ships:
+
+```bash
+npm run bundle --workspace mcp-server   # writes plugin/dist/index.cjs
+```
+
+If you load the plugin for local testing with `claude --plugin-dir
+path/to/desktop-organiser/plugin` instead of installing it, Claude Code
+loads the plugin directory in place, so a stale `plugin/dist/index.cjs` will
+silently mask your source changes until you re-run `bundle`.
 
 ## Status
 
